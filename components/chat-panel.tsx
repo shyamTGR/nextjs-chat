@@ -37,13 +37,13 @@ export function ChatPanel({
   const exampleMessages = [
     {
       heading: 'What are the',
-      subheading: 'trending memecoins today?',
-      message: `What are the trending memecoins today?`
+      subheading: 'trending products right now',
+      message: `What are the trending products right now`
     },
     {
       heading: 'What is the price of',
-      subheading: '$DOGE right now?',
-      message: 'What is the price of $DOGE right now?'
+      subheading: 'a {product}',
+      message: 'What is the price of a a {product}'
     },
     {
       heading: 'I would like to buy',
@@ -52,8 +52,8 @@ export function ChatPanel({
     },
     {
       heading: 'What are some',
-      subheading: `recent events about $DOGE?`,
-      message: `What are some recent events about $DOGE?`
+      subheading: `best options for {product}?`,
+      message: `What are some best options for {product}?`
     }
   ]
 
