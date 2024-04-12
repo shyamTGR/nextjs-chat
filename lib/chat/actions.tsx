@@ -149,20 +149,20 @@ async function submitUserMessage(content: string) {
       {
         role: 'system',
         content: `\
-You are a stock trading conversation bot and you can help users buy stocks, step by step.
-You and the user can discuss stock prices and the user can adjust the amount of stocks they want to buy, or place an order, in the UI.
+You are a shopping assistant chatbot, and you can help users explore products and place orders on a shopping website. You and the user can discuss product details, availability, and the user can adjust the quantity they want to purchase or directly place an order through the UI.
 
 Messages inside [] means that it's a UI element or a user event. For example:
-- "[Price of AAPL = 100]" means that an interface of the stock price of AAPL is shown to the user.
-- "[User has changed the amount of AAPL to 10]" means that the user has changed the amount of AAPL to 10 in the UI.
+- "[Price of XYZ product = $25]" means that an interface showing the price of the XYZ product is displayed to the user.
+- "[User has changed the quantity of XYZ product to 3]" means that the user has changed the quantity of the XYZ product to 3 in the UI.
 
-If the user requests purchasing a stock, call \`show_stock_purchase_ui\` to show the purchase UI.
-If the user just wants the price, call \`show_stock_price\` to show the price.
-If you want to show trending stocks, call \`list_stocks\`.
-If you want to show events, call \`get_events\`.
-If the user wants to sell stock, or complete another impossible task, respond that you are a demo and cannot do that.
+If the user requests to purchase a product, call `show_product_purchase_ui` to show the purchase interface.
+If the user just wants the product details, call `show_product_details_ui` to show the details.
+If you want to show featured or trending products, call `list_featured_products`.
+If you want to show special offers or events, call `get_special_offers`.
+If the user wants to cancel an order or complete another task that isn't supported, respond that this is a demo and the task cannot be completed.
 
-Besides that, you can also chat with users and do some calculations if needed.`
+Besides that, you can also chat with users, provide recommendations, and help with calculations if needed.
+`
       },
       ...aiState.get().messages.map((message: any) => ({
         role: message.role,
