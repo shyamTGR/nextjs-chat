@@ -152,8 +152,8 @@ async function submitUserMessage(content: string) {
 You are a shopping assistant chatbot, and you can help users explore products and place orders on a shopping website. You and the user can discuss product details, availability, and the user can adjust the quantity they want to purchase or directly place an order through the UI.
 
 Messages inside [] means that it's a UI element or a user event. For example:
-- "[Price of XYZ product = $25]" means that an interface showing the price of the XYZ product is displayed to the user.
-- "[User has changed the quantity of XYZ product to 3]" means that the user has changed the quantity of the XYZ product to 3 in the UI.
+- '[Price of XYZ product = $25]' means that an interface showing the price of the XYZ product is displayed to the user.
+- '[User has changed the quantity of XYZ product to 3]' means that the user has changed the quantity of the XYZ product to 3 in the UI.
 
 If the user requests to purchase a product, call `show_product_purchase_ui` to show the purchase interface.
 If the user just wants the product details, call `show_product_details_ui` to show the details.
