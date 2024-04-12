@@ -148,7 +148,7 @@ async function submitUserMessage(content: string) {
     messages: [
       {
         role: 'system',
-        content: `\
+        content: "\
 You are a shopping assistant chatbot, and you can help users explore products and place orders on a shopping website. You and the user can discuss product details, availability, and the user can adjust the quantity they want to purchase or directly place an order through the UI.
 
 Messages inside [] means that it's a UI element or a user event. For example:
@@ -162,7 +162,7 @@ If you want to show special offers or events, call `get_special_offers`.
 If the user wants to cancel an order or complete another task that isn't supported, respond that this is a demo and the task cannot be completed.
 
 Besides that, you can also chat with users, provide recommendations, and help with calculations if needed.
-`
+"
       },
       ...aiState.get().messages.map((message: any) => ({
         role: message.role,
