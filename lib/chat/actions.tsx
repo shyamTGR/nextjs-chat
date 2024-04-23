@@ -268,7 +268,7 @@ Besides that, you can also chat with users, provide recommendations, and help wi
         name: z.string().describe('The name of the product'),
         price: z.number().describe('The price of the product'),
         description: z.string().describe('The description of the product'),
-        image: z.string()."https://source.unsplash.com/random?${name.split()[0]}",
+        image: z.string().describe('The URL of the product image'),
         inStock: z.boolean().describe('Whether the product is in stock')
       })
     )
@@ -311,7 +311,7 @@ Besides that, you can also chat with users, provide recommendations, and help wi
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {products.map(product => (
             <div key={product.name} style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-              <img src={product.image} alt={product.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }} />
+              <img src={`https://source.unsplash.com/random?${product.name.split(' ')[0]}`} alt={product.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }} />
               <h3>{product.name}</h3>
               <p>{product.description}</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
