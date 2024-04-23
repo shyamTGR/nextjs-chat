@@ -67,13 +67,15 @@ const products = [
     name: 'Product 1',
     price: Math.floor(Math.random() * 100) + 1,
     description: 'This is product 1.',
-    image: 'https://via.placeholder.com/150'
+    image: 'https://images.unsplash.com/photo-1627630737366-fbd46d8c11f5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMzg5NDQ3Nw&ixlib=rb-4.0.3&q=80&w=19200',
+    inStock: 0
   },
   {
     name: 'Product 2',
     price: Math.floor(Math.random() * 100) + 1,
     description: 'This is product 2.',
-    image: 'https://via.placeholder.com/150'}]
+    image: 'https://via.placeholder.com/150',
+    inStock: 1}]
   const systemMessage = createStreamableUI(null)
 
   runAsyncFnWithoutBlocking(async () => {
@@ -258,7 +260,7 @@ Besides that, you can also chat with users, provide recommendations, and help wi
           )
         }
       },
-    listProducts: {
+  listProducts: {
   description: 'List three random products from the store.',
   parameters: z.object({
     products: z.array(
@@ -266,22 +268,19 @@ Besides that, you can also chat with users, provide recommendations, and help wi
         name: z.string().describe('The name of the product'),
         price: z.number().describe('The price of the product'),
         description: z.string().describe('The description of the product'),
-        image: z.string().describe('The URL of the product image')
+        image: z.string().describe('The URL of the product image'),
+        inStock: z.boolean().describe('Whether the product is in stock')
       })
     )
   }),
   render: async function* ({ products }) {
     yield (
       <BotCard>
-            <div className="flex flex-col items-center gap-2 animate-pulse">Test
-      <div className="w-20 h-20 bg-gray-300 rounded-full" />
-      <div className="w-32 h-4 bg-gray-300 rounded-full" />
-      <div className="w-32 h-4 bg-gray-300 rounded-full" />
-    </div>
+        <ProductsSkeleton />
       </BotCard>
-    )
+    );
 
-    await sleep(1000)
+    await sleep(1000);
 
     aiState.done({
       ...aiState.get(),
@@ -294,15 +293,25 @@ Besides that, you can also chat with users, provide recommendations, and help wi
           content: JSON.stringify(products)
         }
       ]
-    })
+    });
 
     return (
       <BotCard>
-            <div className="flex flex-col items-center gap-2 animate-pulse">
-      <div className="w-20 h-20 bg-gray-300 rounded-full" />
-      <div className="w-32 h-4 bg-gray-300 rounded-full" />
-      <div className="w-32 h-4 bg-gray-300 rounded-full" />
-    </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {products.map(product => (
+            <div key={product.name} style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+              <img src={product.image} alt={product.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }} />
+              <h3>{product.name}</h3>
+              <p>{product.description}</p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontWeight: 'bold', fontSize: '18px' }}>${product.price}</span>
+                <button style={{ padding: '10px 20px', backgroundColor: '#007BFF', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                  {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </BotCard>
     )
   }
