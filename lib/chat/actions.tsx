@@ -53,7 +53,18 @@ async function confirmPurchase(symbol: string, price: number, amount: number) {
       </p>
     </div>
   )
-
+const products = [
+  {
+    name: 'Product 1',
+    price: Math.floor(Math.random() * 100) + 1,
+    description: 'This is product 1.',
+    image: 'https://via.placeholder.com/150'
+  },
+  {
+    name: 'Product 2',
+    price: Math.floor(Math.random() * 100) + 1,
+    description: 'This is product 2.',
+    image: 'https://via.placeholder.com/150'}]
   const systemMessage = createStreamableUI(null)
 
   runAsyncFnWithoutBlocking(async () => {
@@ -197,6 +208,7 @@ Besides that, you can also chat with users, provide recommendations, and help wi
       return textNode
     },
     functions: {
+      
       listStocks: {
         description: 'List three imaginary stocks that are trending.',
         parameters: z.object({
@@ -237,6 +249,47 @@ Besides that, you can also chat with users, provide recommendations, and help wi
           )
         }
       },
+    listProducts: {
+  description: 'List three random products from the store.',
+  parameters: z.object({
+    products: z.array(
+      z.object({
+        name: z.string().describe('The name of the product'),
+        price: z.number().describe('The price of the product'),
+        description: z.string().describe('The description of the product'),
+        image: z.string().describe('The URL of the product image')
+      })
+    )
+  }),
+  render: async function* ({ products }) {
+    yield (
+      <BotCard>
+        <ProductsSkeleton />
+      </BotCard>
+    )
+
+    await sleep(1000)
+
+    aiState.done({
+      ...aiState.get(),
+      messages: [
+        ...aiState.get().messages,
+        {
+          id: nanoid(),
+          role: 'function',
+          name: 'listProducts',
+          content: JSON.stringify(products)
+        }
+      ]
+    })
+
+    return (
+      <BotCard>
+        <Products props={products} />
+      </BotCard>
+    )
+  }
+},
       showStockPrice: {
         description:
           'Get the current stock price of a given stock or currency. Use this to show the price to the user.',
