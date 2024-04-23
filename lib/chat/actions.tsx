@@ -286,7 +286,13 @@ Besides that, you can also chat with users, provide recommendations, and help wi
     );
 
     await sleep(1000);
-
+    
+    const updatedProducts = await Promise.all(products.map(async product => {
+      const keyword = product.name.split(' ')[0]; // Use the first word of the product name as a keyword
+      const imageUrl = `https://source.unsplash.com/random?${keyword}`;
+      return { ...product, image: imageUrl };
+    }));
+    
     aiState.done({
       ...aiState.get(),
       messages: [
