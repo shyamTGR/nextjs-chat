@@ -268,7 +268,7 @@ Besides that, you can also chat with users, provide recommendations, and help wi
         name: z.string().describe('The name of the product'),
         price: z.number().describe('The price of the product'),
         description: z.string().describe('The description of the product'),
-        image: z.string().describe('The URL of the product image'),
+        image: z.string()."https://source.unsplash.com/random?${name.split()[0]}",
         inStock: z.boolean().describe('Whether the product is in stock')
       })
     )
