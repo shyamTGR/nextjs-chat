@@ -273,7 +273,11 @@ Besides that, you can also chat with users, provide recommendations, and help wi
   render: async function* ({ products }) {
     yield (
       <BotCard>
-        <ProductsSkeleton />
+            <div className="flex flex-col items-center gap-2 animate-pulse">Test
+      <div className="w-20 h-20 bg-gray-300 rounded-full" />
+      <div className="w-32 h-4 bg-gray-300 rounded-full" />
+      <div className="w-32 h-4 bg-gray-300 rounded-full" />
+    </div>
       </BotCard>
     )
 
@@ -294,7 +298,7 @@ Besides that, you can also chat with users, provide recommendations, and help wi
 
     return (
       <BotCard>
-        <Products props={products} />
+        
       </BotCard>
     )
   }
