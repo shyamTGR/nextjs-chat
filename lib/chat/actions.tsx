@@ -299,7 +299,7 @@ Besides that, you can also chat with users, provide recommendations, and help wi
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {products.map(product => (
             <div key={product.name} style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-              <img src={`https://source.unsplash.com/random?${product.name.split(' ')[1]}`} alt={product.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }} />
+              <img src={`${product.image}`} alt={product.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }} />
               <h3>{product.name}</h3>
               <p>{product.description}</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
