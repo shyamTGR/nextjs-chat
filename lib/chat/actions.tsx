@@ -316,76 +316,7 @@ Besides that, you can also chat with users, provide recommendations, and help wi
       </BotCard>
     )
   }
-},findProduct: {
-  description: 'Search for a specific product and display its details.',
-  parameters: z.object({
-    productName: z.string().describe('The name of the product to search for.')
-  }),
-  render: async function* ({ productName }) {
-    yield (
-      <BotCard>
-        <div className="flex flex-col items-center gap-2 animate-pulse">Searching for Product
-          <div className="w-20 h-20 bg-gray-300 rounded-full" />
-          <div className="w-32 h-4 bg-gray-300 rounded-full" />
-          <div className="w-32 h-4 bg-gray-300 rounded-full" />
-        </div>
-      </BotCard>
-    );
-
-    await sleep(1000);
-
-    // Simulating fetching data from a local JSON file
-    const data = await fetch('/data2.json').then(res => res.json());
-    const product = data.products.find(p => p.name.toLowerCase() === productName.toLowerCase());
-
-    if (!product) {
-      aiState.done({
-        ...aiState.get(),
-        messages: [
-          ...aiState.get().messages,
-          {
-            id: nanoid(),
-            role: 'assistant',
-            content: `No product found with the name "${productName}".`
-          }
-        ]
-      });
-      return <BotMessage content={`No product found with the name "${productName}".`} />
-    } else {
-      aiState.done({
-        ...aiState.get(),
-        messages: [
-          ...aiState.get().messages,
-          {
-            id: nanoid(),
-            role: 'function',
-            name: 'findProduct',
-            content: JSON.stringify(product)
-          }
-        ]
-      });
-
-      return (
-        <BotCard>
-          <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-            <img src={product.image} alt={product.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }} />
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontWeight: 'bold', fontSize: '18px', color: 'black' }}>
-                ${product.price}
-              </span>
-              <button style={{ padding: '10px 20px', backgroundColor: '#007BFF', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-                {product.stock? 'Add to Cart' : 'Out of Stock'}
-              </button>
-            </div>
-          </div>
-        </BotCard>
-      )
-    }
-  }
-}
-,
+},
       showStockPrice: {
         description:
           'Get the current stock price of a given stock or currency. Use this to show the price to the user.',
