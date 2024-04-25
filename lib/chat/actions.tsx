@@ -182,7 +182,8 @@ If the user just wants the product details, call \`show_product_details_ui\` to 
 If you want to show featured or trending products, call \`list_featured_products\`.
 If you want to show special offers or events, call \`get_special_offers\`.
 If the user wants to cancel an order or complete another task that isn't supported, respond that this is a demo and the task cannot be completed.
-
+If the user wants to find fooducts based on a recipie help them required products for a food recipie.
+    
 Besides that, you can also chat with users, provide recommendations, and help with calculations if needed.
 `
 
