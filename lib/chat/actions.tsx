@@ -303,7 +303,7 @@ Besides that, you can also chat with users, provide recommendations, and help wi
               <h3>{product.name}</h3>
               <p>{product.description}</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontWeight: 'bold', fontSize: '18px', color: 'black', textDecoration: 'none' }}>
+                  <span style={{ fontWeight: 'bold', fontSize: '18px', color: 'White', textDecoration: 'none' }}>
     ${product.price}
   </span>
                 <button style={{ padding: '10px 20px', backgroundColor: '#007BFF', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
