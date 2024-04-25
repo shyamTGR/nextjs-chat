@@ -315,7 +315,9 @@ Besides that, you can also chat with users, provide recommendations, and help wi
               <h3>{product.name}</h3>
               <p>{product.description}</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span href="http://localhost:8000/cart" target="_blank" style={{ fontWeight: 'bold', fontSize: '18px' }}>${product.price}</span>
+                  <a href="http://localhost:8000/cart" target="_blank" style={{ fontWeight: 'bold', fontSize: '18px', color: 'black', textDecoration: 'none' }}>
+    ${product.price}
+  </a>
                 <button style={{ padding: '10px 20px', backgroundColor: '#007BFF', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
                   {product.inStock ? 'Add to Cart' : 'Out of Stock'}
                 </button>
